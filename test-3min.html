@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3 Minute Test | VTP</title>
+    <link rel="shortcut icon" href="faveicon.png" type="faveicon">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <nav class="sidebar" id="sidebar">
+            <div class="logo">
+                <div class="logo-icon"><i class="fa-solid fa-keyboard"></i></div>
+                <div class="logo-text">
+                    <h1>VTP 2.0</h1><span>Virtual Typing Pro</span>
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li class="nav-item"><a href="index.html"><i class="fa-solid fa-house"></i> <span>Dashboard</span></a>
+                </li>
+                <li class="nav-item"><a href="tutorials.html"><i class="fa-solid fa-book-open"></i>
+                        <span>Tutorials</span></a></li>
+                <li class="nav-item"><a href="practices.html"><i class="fa-solid fa-dumbbell"></i>
+                        <span>Practices</span></a></li>
+                <li class="nav-item active"><a href="tests.html"><i class="fa-solid fa-stopwatch"></i> <span>Typing
+                            Test</span></a></li>
+            </ul>
+        </nav>
+        <main class="main-content">
+            <header class="topbar">
+                <div class="mobile-menu-btn" id="mobile-menu-btn"><i class="fa-solid fa-bars"></i></div>
+                <div class="topbar-controls">
+                    <button class="btn btn-outline btn-sm" id="btn-back"><i class="fa-solid fa-arrow-left"></i>
+                        Back</button>
+                    <span class="breadcrumbs">Tests / 3 Minute Test</span>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="stats-row">
+                    <div class="stat-card glass-card">
+                        <div class="stat-icon-wrapper blue-glow"><i class="fa-solid fa-stopwatch"></i></div>
+                        <div class="stat-data">
+                            <span class="stat-label">Time</span>
+                            <span class="stat-value monospace" id="time-left">03:00</span>
+                        </div>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <div class="stat-icon-wrapper green-glow"><i class="fa-solid fa-gauge-high"></i></div>
+                        <div class="stat-data">
+                            <span class="stat-label">WPM</span>
+                            <span class="stat-value monospace" id="wpm">0</span>
+                        </div>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <div class="stat-icon-wrapper purple-glow"><i class="fa-solid fa-bullseye"></i></div>
+                        <div class="stat-data">
+                            <span class="stat-label">Accuracy</span>
+                            <span class="stat-value monospace" id="accuracy">100%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="typing-workspace test-workspace glass-card" style="position:relative;">
+                    <div class="test-overlay" id="test-overlay"
+                        style="position: absolute; top:0; left:0; width:100%; height:100%; background:rgba(var(--bg-secondary), 0.8); display:flex; flex-direction:column; align-items:center; justify-content:center; z-index:20; border-radius:var(--radius-lg);">
+                        <button class="btn btn-primary btn-lg pulse" id="btn-start-test"><i
+                                class="fa-solid fa-play"></i> Start Test</button>
+                        <p style="margin-top:1rem;">Click to start the timer.</p>
+                    </div>
+
+                    <div class="text-display large mono-text blurred-test" id="text-display" style="filter: blur(4px);">
+                        Loading text...</div>
+                    <input type="text" class="hidden-input" id="typing-input" disabled autocomplete="off">
+                </div>
+
+                <div class="mt-20">
+                    <button class="btn btn-outline btn-sm text-danger" id="btn-stop-test" disabled><i
+                            class="fa-solid fa-square"></i> Stop Test</button>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal-backdrop hidden" id="results-modal">
+                    <div class="modal glass-card">
+                        <div class="modal-header">
+                            <h3>Test Completed</h3>
+                            <button class="close-btn" id="btn-close-modal"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                        <div class="modal-body">
+                            <i class="fa-solid fa-trophy"
+                                style="font-size:4rem; color:#fbbf24; margin-bottom:1.5rem;"></i>
+                            <div
+                                style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin-bottom: 1rem;">
+                                <div>
+                                    <div style="color:var(--text-muted);font-size:0.75rem;">SPEED</div>
+                                    <div id="final-wpm" style="font-size:1.75rem;font-weight:700;color:var(--primary);">
+                                        0</div>
+                                </div>
+                                <div>
+                                    <div style="color:var(--text-muted);font-size:0.75rem;">ACCURACY</div>
+                                    <div id="final-accuracy"
+                                        style="font-size:1.75rem;font-weight:700;color:var(--success);">0%</div>
+                                </div>
+                                <div>
+                                    <div style="color:var(--text-muted);font-size:0.75rem;">CHARS</div>
+                                    <div id="final-chars"
+                                        style="font-size:1.25rem;font-weight:700;color:var(--purple);">0/0</div>
+                                </div>
+                            </div>
+                            <div
+                                style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
+                                <div>
+                                    <div style="color:var(--text-muted);font-size:0.75rem;">BACKSPACES</div>
+                                    <div id="final-backspaces"
+                                        style="font-size:1.25rem;font-weight:700;color:var(--warning);">0</div>
+                                </div>
+                                <div>
+                                    <div style="color:var(--text-muted);font-size:0.75rem;">WRONG CHARS</div>
+                                    <div id="final-wrong"
+                                        style="font-size:1.25rem;font-weight:700;color:var(--danger);">0</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-outline" id="btn-modal-close">Close</button>
+                            <button class="btn btn-primary" id="btn-restart-test-modal">Try Again</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="global.js"></script>
+    <script src="typing-engine.js"></script>
+    <script src="test-logic.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => initTestPage(3));
+    </script>
+</body>
+
+</html>

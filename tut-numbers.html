@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial: Numbers Row | VTP</title>
+    <link rel="shortcut icon" href="faveicon.png" type="faveicon">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <nav class="sidebar" id="sidebar">
+            <div class="logo">
+                <div class="logo-icon"><i class="fa-solid fa-keyboard"></i></div>
+                <div class="logo-text">
+                    <h1>VTP 2.0</h1><span>Virtual Typing Pro</span>
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li class="nav-item"><a href="index.html"><i class="fa-solid fa-house"></i> <span>Dashboard</span></a>
+                </li>
+                <li class="nav-item active"><a href="tutorials.html"><i class="fa-solid fa-book-open"></i>
+                        <span>Tutorials</span></a></li>
+                <li class="nav-item"><a href="practices.html"><i class="fa-solid fa-dumbbell"></i>
+                        <span>Practices</span></a></li>
+                <li class="nav-item"><a href="tests.html"><i class="fa-solid fa-stopwatch"></i> <span>Typing
+                            Test</span></a></li>
+            </ul>
+        </nav>
+        <main class="main-content">
+            <header class="topbar">
+                <div class="mobile-menu-btn" id="mobile-menu-btn"><i class="fa-solid fa-bars"></i></div>
+                <div class="topbar-controls">
+                    <button class="btn btn-outline btn-sm" id="btn-back"><i class="fa-solid fa-arrow-left"></i>
+                        Back</button>
+                    <button class="btn btn-outline btn-sm" id="btn-refresh"><i class="fa-solid fa-rotate-right"></i>
+                        Restart</button>
+                    <span class="breadcrumbs">Tutorials / Numbers Row</span>
+                </div>
+            </header>
+            <div class="content-wrapper">
+                <div class="typing-workspace glass-card" style="max-width: 800px; margin: 40px auto;">
+                    <h3 id="tut-title" style="font-size: 1.5rem; margin-bottom: 0.5rem;">Loading...</h3>
+                    <p id="tut-desc" style="color: var(--text-muted); margin-bottom: 2rem;">Loading...</p>
+
+                    <div class="text-display mono-text" id="text-display"></div>
+                    <input type="text" class="hidden-input" id="typing-input" autocomplete="off">
+
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-color); padding-top: 1rem; margin-top:2rem;">
+                        <div style="display: flex; flex-direction: column;">
+                            <span
+                                style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted);">Accuracy</span>
+                            <span id="tut-accuracy"
+                                style="font-size: 1.5rem; font-weight: 700; color: var(--text-main);">100%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="data.js"></script>
+    <script src="global.js"></script>
+    <script src="typing-engine.js"></script>
+    <script src="tutorial-logic.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => initTutorialPage('numbers'));
+    </script>
+</body>
+
+</html>
